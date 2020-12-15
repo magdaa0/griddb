@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 20
+
+void citire(int nrl, int nrc, int matr[][MAX]);
+void afisare(int nrl, int nrc, int matr[][MAX]);
+void binarizare(int nrl, int nrc, int prag, int matr[][MAX]);
+
+void citire(int nrl, int nrc, int matr[][MAX])
+{
+    int i, j;
+    for( i=0; i<nrl; i++)
+        for( j=0; j<nrc; j++)
+        {
+            printf("[%d][%d]", i,j);
+            scanf("%d", &matr[i][j]);
+        }
+
+}
+void afisare(int nrl, int nrc, int matr[][MAX])
+{
+    int i, j;
+    printf("\n");
+    for(i=0; i<nrl; i++)
+       {
+
+       for(j=0; j<nrc; j++)
+        printf("%3d\t", matr[i][j]);
+        printf("\n");
+    }
+}
+void binarizare(int nrl, int nrc, int prag, int matr[][MAX])
+{
+    int i,j;
+    for(i=0; i<nrl; i++)
+       {for(j=0; j<nrc; j++)
+           if(matr[i][j]>=prag)
+            matr[i][j]=1;
+           else
+            matr[i][j]=0;
+       }
+}
+
+int main()
+{
+    int nrl, nrc, prag, A[MAX][MAX];
+    printf("Introduceti numarul de linii ale matricilor:");
+    scanf("%d", &nrl);
+    printf("Introduceti numarul de coloane ale matricilor:");
+    scanf("%d", &nrc);
+    if(nrl<1 || nrl>MAX || nrc<1 ||nrc>MAX)
+    {
+        printf("Numarul de linii sau de coloane eronat\n");
+        exit(1);
+    }
+    printf("elem A:\n");
+    citire(nrl, nrc, A);
+    printf("\n matricea A:\n");
+    afisare(nrl, nrc, A);
+    printf("\nValoarea de prag:\n");
+    scanf("%d", &prag);
+    binarizare(nrl, nrc, prag, A);
+    afisare(nrl, nrc, A);
+    return 0;
+
+
+}
